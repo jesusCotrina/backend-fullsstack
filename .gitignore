@@ -21,7 +21,7 @@
 .DS_Store
 .AppleDouble
 .LSOverride
-
+!scripts/
 # Icon must end with two \r
 Icon
 
@@ -52,8 +52,6 @@ Temporary Items
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
-*.py[cod]
-*$py.class
 
 # C extensions
 *.so
