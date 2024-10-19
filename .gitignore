@@ -24,7 +24,7 @@
 !scripts/
 # Icon must end with two \r
 Icon
-
+scripts/__pycache__/
 
 # Thumbnails
 ._*
