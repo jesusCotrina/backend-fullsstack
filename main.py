@@ -12,7 +12,8 @@ Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 origin = [
-    'https://front-jc.netlify.app/'
+    "https://front-jc.netlify.app/",
+    
 ]
 
 app.add_middleware(
