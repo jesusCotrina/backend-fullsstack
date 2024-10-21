@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, Depends, HTTPException, Request
 from sqlalchemy.orm import Session
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -10,6 +10,7 @@ from scripts.models import Base
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+ALLOWED_ORIGIN="https://front-jc.netlify.app"
 
 origin = [
     "https://front-jc.netlify.app",
@@ -38,7 +39,11 @@ def root():
 
 
 @app.get('/api/users/', response_model=list[UserId])
-def get_users(db: Session = Depends(get_db)):
+def get_users(request: Request,db: Session = Depends(get_db)):
+    referer = request.headers.get("referer")
+    if not referer or not referer.startswith(ALLOWED_ORIGIN):
+        raise HTTPException(status_code=403, detail="Access from this origin is not allowed")
+    
     return crud.get_users(db=db)
 
 
